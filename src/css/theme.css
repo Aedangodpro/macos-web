@@ -33,11 +33,11 @@ body[data-theme='light'] {
 	/* // Glossy glass sheen laid over translucent surfaces */
 	--system-glass-sheen: linear-gradient(
 		180deg,
-		hsla(0, 0%, 100%, 0.12) 0%,
-		hsla(0, 0%, 100%, 0.03) 34%,
-		hsla(258, 60%, 8%, 0.06) 100%
+		hsla(0, 0%, 100%, 0.5) 0%,
+		hsla(0, 0%, 100%, 0.16) 38%,
+		hsla(258, 30%, 82%, 0.12) 100%
 	);
-	--system-glass-highlight: inset 0 1px 0 hsla(0, 0%, 100%, 0.28);
+	--system-glass-highlight: inset 0 0.5px 0 hsla(0, 0%, 100%, 0.55);
 
 	--system-font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Helvetica',
 		'Arial', sans-serif;
@@ -117,15 +117,16 @@ body.dark {
 	--system-color-light-contrast: hsl(253, 48%, 95%);
 	--system-color-light-contrast-hsl: 253, 48%, 95%;
 
-	/* // Hairline rim drawn around translucent surfaces */
-	--system-color-rim-hsl: 45, 100%, 58%;
+	/* // Hairline rim drawn around translucent surfaces. Neutral by design: the
+	// accent is reserved for selection and active state, not every edge. */
+	--system-color-rim-hsl: 255, 45%, 92%;
 
 	/* // Glossy glass sheen laid over translucent surfaces */
 	--system-glass-sheen: linear-gradient(
 		180deg,
-		hsla(252, 100%, 96%, 0.14) 0%,
-		hsla(252, 100%, 92%, 0.04) 30%,
-		hsla(258, 70%, 3%, 0.24) 100%
+		hsla(252, 100%, 96%, 0.08) 0%,
+		hsla(252, 100%, 96%, 0.02) 34%,
+		hsla(258, 70%, 3%, 0.16) 100%
 	);
-	--system-glass-highlight: inset 0 1px 0 hsla(252, 100%, 96%, 0.22);
+	--system-glass-highlight: inset 0 0.5px 0 hsla(252, 100%, 96%, 0.13);
 }

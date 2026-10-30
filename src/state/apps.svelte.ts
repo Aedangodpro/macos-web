@@ -41,6 +41,21 @@ export const apps = $state({
 
 	is_being_dragged: false as boolean,
 
+	/** Windows stay mounted while minimized, so their state survives. */
+	minimized: {
+		wallpapers: false,
+		finder: false,
+		vscode: false,
+		calculator: false,
+		// safari: false,
+		appstore: false,
+		calendar: false,
+		// 'system-preferences': false,
+
+		'purus-twitter': false,
+		'view-source': false,
+	} as Record<AppID, boolean>,
+
 	fullscreen: {
 		wallpapers: false,
 		finder: false,

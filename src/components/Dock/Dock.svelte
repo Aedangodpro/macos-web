@@ -89,20 +89,20 @@
 	}
 
 	.dock-el {
-		background-color: hsla(var(--system-color-light-hsl), 0.4);
+		background-color: hsla(var(--system-color-light-hsl), 0.34);
 		background-image: var(--system-glass-sheen);
 
 		box-shadow:
 			var(--system-glass-highlight),
-			inset 0 0 0 0.5px hsla(var(--system-color-rim-hsl), 0.16),
-			0 0 0 1px hsla(var(--system-color-primary-hsl), 0.14),
-			hsla(258, 60%, 4%, 0.5) 2px 5px 19px 7px;
+			inset 0 0 0 0.5px hsla(var(--system-color-rim-hsl), 0.14),
+			0 18px 40px hsla(258, 70%, 2%, 0.5),
+			0 2px 6px hsla(258, 70%, 2%, 0.34);
 
 		position: relative;
 
 		padding: 0.3rem;
 
-		border-radius: 1.2rem;
+		border-radius: 1.1rem;
 
 		height: 100%;
 
@@ -151,7 +151,7 @@
 		height: 100%;
 		width: 0.2px;
 
-		background-color: hsla(var(--system-color-primary-hsl), 0.22);
+		background-color: hsla(var(--system-color-rim-hsl), 0.14);
 
 		margin: 0 4px;
 	}

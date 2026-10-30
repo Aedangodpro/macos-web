@@ -13,9 +13,75 @@
 		<meta name="twitter:card" content="summary_large_image" />
 
 		<link rel="prefetch" href="/sounds/mac-startup-sound.mp3" />
+
+		<style>
+			/* Only used if the bundle never mounts, so a failed load is never a blank page. */
+			#boot-fallback {
+				position: fixed;
+				inset: 0;
+
+				display: grid;
+				place-content: center;
+				gap: 0.75rem;
+
+				padding: 2rem;
+				text-align: center;
+
+				background: #120c22;
+				color: #ece7ff;
+				font-family: system-ui, sans-serif;
+			}
+
+			#boot-fallback[hidden] {
+				display: none;
+			}
+
+			#boot-fallback h1 {
+				font-size: 1.5rem;
+				font-weight: 600;
+			}
+
+			#boot-fallback p {
+				font-size: 0.95rem;
+				opacity: 0.7;
+			}
+
+			#boot-fallback button {
+				justify-self: center;
+
+				padding: 0.5rem 1.1rem;
+
+				border-radius: 0.6rem;
+				background: #ffd23f;
+				color: #170f2b;
+
+				font: inherit;
+				font-weight: 600;
+
+				cursor: pointer;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="root"></div>
+
+		<div id="boot-fallback" hidden>
+			<h1>Serial Designation N</h1>
+			<p>The desktop didn&rsquo;t finish loading. A reload usually clears a stale cache.</p>
+			<button type="button" onclick="location.reload()">Reload</button>
+			<noscript>This desktop needs JavaScript enabled.</noscript>
+		</div>
+
 		<script type="module" src="/src/main.ts"></script>
+
+		<script>
+			setTimeout(function () {
+				var root = document.getElementById('root');
+
+				if (root && root.childElementCount === 0) {
+					document.getElementById('boot-fallback').hidden = false;
+				}
+			}, 12000);
+		</script>
 	</body>
 </html>

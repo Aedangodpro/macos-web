@@ -40,25 +40,23 @@
 		width: 100%;
 		height: 1.8rem;
 
-		background-color: hsla(var(--system-color-light-hsl), 0.3);
+		background-color: hsla(var(--system-color-light-hsl), 0.42);
 		background-image: var(--system-glass-sheen);
-		border-bottom: 0.5px solid hsla(var(--system-color-primary-hsl), 0.16);
+		box-shadow: inset 0 -0.5px 0 hsla(var(--system-color-rim-hsl), 0.08);
 
 		color: var(--system-color-light-contrast);
 		fill: var(--system-color-light-contrast);
 
 		button {
 			font-weight: 500;
-			font-size: 0.8rem;
+			font-size: 0.78rem;
 			font-family: var(--system-font-family);
 
-			letter-spacing: 0.3px;
+			letter-spacing: 0.1px;
 
 			position: relative;
 
 			height: 100%;
-
-			text-shadow: 0 0 1px hsla(0, 0%, 0%, 0.1);
 		}
 	}
 

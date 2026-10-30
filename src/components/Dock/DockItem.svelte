@@ -109,13 +109,20 @@
 	async function openApp(e: MouseEvent) {
 		if (!shouldOpenWindow) return externalAction?.(e);
 
-		// For the bounce animation
-		const isAppAlreadyOpen = apps.open[app_id];
+		const is_app_already_open = apps.open[app_id];
+		const was_minimized = apps.minimized[app_id];
 
 		apps.open[app_id] = true;
 		apps.active = app_id;
 
-		if (isAppAlreadyOpen) return;
+		// Clicking a minimized app brings its window back instead of doing nothing.
+		if (was_minimized) {
+			apps.minimized[app_id] = false;
+			bounceEffect();
+			return;
+		}
+
+		if (is_app_already_open) return;
 
 		bounceEffect();
 	}
@@ -220,17 +227,21 @@
 	}
 
 	.dot {
-		height: 4px;
-		width: 4px;
+		height: 3px;
+		width: 3px;
 
 		margin: 0px;
 
 		border-radius: 50%;
 
 		background-color: var(--system-color-primary);
-		box-shadow: 0 0 6px hsla(var(--system-color-primary-hsl), 0.8);
 
 		opacity: var(--opacity);
+
+		transition:
+			opacity 160ms ease,
+			transform 160ms ease;
+		transform: scale(calc(0.6 + var(--opacity) * 0.4));
 	}
 	.pwa-badge {
 		position: absolute;

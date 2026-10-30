@@ -144,4 +144,23 @@
 		background-size: cover;
 		background-position: center;
 	}
+
+	/* Keeps the menu bar and dock readable without dimming the artwork much. */
+	.background-cover::after {
+		content: '';
+
+		position: absolute;
+		inset: 0;
+
+		pointer-events: none;
+
+		background:
+			linear-gradient(180deg, hsla(258, 62%, 4%, 0.34) 0%, hsla(258, 62%, 4%, 0) 15%),
+			linear-gradient(0deg, hsla(258, 62%, 4%, 0.28) 0%, hsla(258, 62%, 4%, 0) 20%),
+			radial-gradient(
+				120% 90% at 50% 50%,
+				hsla(258, 62%, 4%, 0) 55%,
+				hsla(258, 62%, 4%, 0.24) 100%
+			);
+	}
 </style>

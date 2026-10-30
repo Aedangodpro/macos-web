@@ -186,13 +186,9 @@
 
 		box-shadow:
 			var(--system-glass-highlight),
-			hsla(258, 60%, 4%, 0.35) 0px 0px 11px 0px,
-			inset 0 0 0 var(--border-size) hsla(var(--system-color-dark-hsl), 0.3),
-			0 0 0 var(--border-size) hsla(var(--system-color-rim-hsl), 0.3);
-
-		&.dark {
-			--border-size: 0.5px;
-		}
+			inset 0 0 0 0.5px hsla(var(--system-color-rim-hsl), 0.16),
+			0 18px 40px hsla(258, 70%, 2%, 0.45),
+			0 2px 6px hsla(258, 70%, 2%, 0.3);
 
 		&::before {
 			content: '';
@@ -320,8 +316,8 @@
 			width: 100%;
 
 			button {
-				height: 1.4rem;
-				width: 1.4rem;
+				height: 1.3rem;
+				width: 1.3rem;
 
 				color: hsl(var(--color-contrast-hsl));
 

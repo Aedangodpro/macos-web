@@ -104,6 +104,20 @@
 	function closeApp() {
 		apps.open[app_id] = false;
 		apps.fullscreen[app_id] = false;
+		apps.minimized[app_id] = false;
+	}
+
+	function minimizeApp() {
+		apps.minimized[app_id] = true;
+		apps.fullscreen[app_id] = false;
+
+		// Hand focus to the next visible window so the desktop isn't "focused" on
+		// something the user can no longer see.
+		const next_visible_app = (Object.keys(apps.open) as AppID[]).find(
+			(other_app) => other_app !== app_id && apps.open[other_app] && !apps.minimized[other_app],
+		);
+
+		if (next_visible_app) apps.active = next_visible_app;
 	}
 
 	function onAppDragStart() {
@@ -124,6 +138,7 @@
 	class="container"
 	class:dark={preferences.theme.scheme === 'dark'}
 	class:active={apps.active === app_id}
+	class:minimized={apps.minimized[app_id]}
 	style:width="{+width / remModifier}rem"
 	style:height="{+height / remModifier}rem"
 	style:z-index={apps.z_indices[app_id]}
@@ -141,7 +156,12 @@
 	out:windowCloseTransition
 >
 	<div class="tl-container {app_id}" use:elevation={'window-traffic-lights'}>
-		<TrafficLights {app_id} on_maximize_click={maximizeApp} on_close_app={closeApp} />
+		<TrafficLights
+			{app_id}
+			on_maximize_click={maximizeApp}
+			on_minimize_click={minimizeApp}
+			on_close_app={closeApp}
+		/>
 	</div>
 
 	<AppNexus {app_id} is_being_dragged={apps.is_being_dragged} />
@@ -149,7 +169,7 @@
 
 <style>
 	.container {
-		--elevated-shadow: 0px 8.5px 10px rgba(0, 0, 0, 0.115), 0px 68px 80px rgba(0, 0, 0, 0.23);
+		--elevated-shadow: 0px 10px 24px hsla(258, 70%, 2%, 0.34), 0px 40px 72px hsla(258, 70%, 2%, 0.42);
 
 		width: 100%;
 		height: 100%;
@@ -159,17 +179,22 @@
 
 		position: absolute;
 
-		will-change: width, height;
+		will-change: width, height, opacity, scale;
 
-		border-radius: 0.75rem;
+		border-radius: 0.85rem;
 		box-shadow: var(--elevated-shadow);
+
+		transform-origin: 50% 50%;
+		transition:
+			opacity 220ms ease,
+			scale 220ms ease;
 
 		cursor: var(--system-cursor-default), auto;
 
 		&.active {
 			/* // --elevated-shadow: 0px 6.7px 12px rgba(0, 0, 0, 0.218), 0px 22.3px 40.2px rgba(0, 0, 0, 0.322),
       //   0px 100px 180px rgba(0, 0, 0, 0.54); */
-			--elevated-shadow: 0px 8.5px 10px rgba(0, 0, 0, 0.28), 0px 68px 80px rgba(0, 0, 0, 0.56);
+			--elevated-shadow: 0px 12px 28px hsla(258, 70%, 2%, 0.44), 0px 48px 88px hsla(258, 70%, 2%, 0.56);
 		}
 
 		&.dark {
@@ -177,16 +202,28 @@
 			& > :global(div) {
 				border-radius: inherit;
 				box-shadow:
-					inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.18),
-					0 0 0 1px hsla(var(--system-color-primary-hsl), 0.2),
+					inset 0 0 0 0.5px hsla(var(--system-color-rim-hsl), 0.16),
 					var(--elevated-shadow);
 			}
 		}
 	}
 
+	.container.minimized {
+		opacity: 0;
+		scale: 0.72;
+
+		visibility: hidden;
+		pointer-events: none;
+
+		transition:
+			opacity 180ms ease,
+			scale 180ms ease,
+			visibility 0s linear 180ms;
+	}
+
 	.tl-container {
 		position: absolute;
-		top: 1rem;
+		top: 0.9rem;
 		left: 1rem;
 
 		/* // Necessary, as `.container` tries to apply shadow on it */
