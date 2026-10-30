@@ -66,7 +66,8 @@ const viewSource = create_app_config({
 	resizable: true,
 
 	should_open_window: false,
-	external_action: () => window.open('https://github.com/puruvj/macos-web', '_blank'),
+	external_action: () =>
+		window.open('https://github.com/puruvj/macos-web', '_blank', 'noopener,noreferrer'),
 });
 
 const appstore = create_app_config({

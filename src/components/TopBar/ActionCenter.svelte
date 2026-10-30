@@ -93,17 +93,27 @@
 	>
 		<ActionCenterTile grid={[1, 1]} role="region">
 			<div class="color-picker">
-				<p>System Color</p>
-				<div class="color-palette">
+				<div class="picker-label">
+					<p>System Color</p>
+					<span>{preferences.theme.primaryColor}</span>
+				</div>
+
+				<div class="color-palette" role="group" aria-label="System accent color">
 					{#each Object.keys(colors) as colorID}
 						{@const { contrastHsl, hsl } = colors[colorID][preferences.theme.scheme]}
+						{@const is_active = preferences.theme.primaryColor === colorID}
 
 						<button
+							type="button"
+							class:active={is_active}
 							style:--color-hsl={hsl}
 							style:--color-contrast-hsl={contrastHsl}
+							title="{colorID} accent"
+							aria-label="Use the {colorID} accent color"
+							aria-pressed={is_active}
 							onclick={() => (preferences.theme.primaryColor = colorID)}
 						>
-							{#if preferences.theme.primaryColor === colorID}
+							{#if is_active}
 								<CheckedIcon />
 							{/if}
 						</button>
@@ -287,6 +297,20 @@
 
 		padding: 0.25rem;
 
+		.picker-label {
+			display: flex;
+			align-items: baseline;
+			gap: 0.5rem;
+
+			span {
+				color: hsla(var(--system-color-light-contrast-hsl), 0.55);
+				font-size: 0.75rem;
+				font-weight: 500;
+				text-transform: capitalize;
+				letter-spacing: 0.3px;
+			}
+		}
+
 		.color-palette {
 			margin-top: 0.5rem;
 
@@ -304,12 +328,33 @@
 				border-radius: 50%;
 
 				background-color: hsl(var(--color-hsl));
+				/* // Glossy glass highlight, same treatment as the window controls */
+				background-image:
+					radial-gradient(
+						85% 85% at 30% 24%,
+						hsla(0, 0%, 100%, 0.55) 0%,
+						hsla(0, 0%, 100%, 0) 60%
+					),
+					linear-gradient(180deg, hsla(0, 0%, 100%, 0.16), hsla(0, 0%, 0%, 0.16));
+				box-shadow:
+					inset 0 0 0 0.5px hsla(0, 0%, 0%, 0.25),
+					inset 0 1px 1px hsla(0, 0%, 100%, 0.45);
 
 				transition: box-shadow 200ms ease-in;
 
 				&:hover,
 				&:focus-visible {
-					box-shadow: 0 0 0 0.2rem hsla(var(--color-hsl), 0.25);
+					box-shadow:
+						inset 0 0 0 0.5px hsla(0, 0%, 0%, 0.25),
+						inset 0 1px 1px hsla(0, 0%, 100%, 0.45),
+						0 0 0 0.2rem hsla(var(--color-hsl), 0.3);
+				}
+
+				&.active {
+					box-shadow:
+						inset 0 0 0 0.5px hsla(0, 0%, 0%, 0.25),
+						inset 0 1px 1px hsla(0, 0%, 100%, 0.45),
+						0 0 0 0.2rem hsla(var(--color-hsl), 0.55);
 				}
 			}
 		}

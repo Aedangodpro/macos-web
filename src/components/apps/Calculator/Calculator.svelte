@@ -54,7 +54,8 @@
 		height: 100%;
 		width: 100%;
 
-		background-color: hsla(240, 5%, 12%, 0.7);
+		background-color: hsla(258, 42%, 8%, 0.72);
+		background-image: var(--system-glass-sheen);
 		backdrop-filter: blur(15px);
 
 		border-radius: inherit;
@@ -86,15 +87,17 @@
 	}
 
 	.top-row-button {
-		background-color: hsla(240, 5%, 12%, 0.2);
+		background-color: hsla(258, 30%, 26%, 0.45);
 	}
 
 	.number-button {
-		background-color: hsla(240, 5%, 80%, 0.25);
+		background-color: hsla(255, 22%, 74%, 0.22);
 	}
 
 	.operation-button {
-		background-color: hsl(37deg 98% 51%);
+		background-color: hsl(var(--system-color-primary-hsl));
+		color: var(--system-color-primary-contrast) !important;
+		fill: var(--system-color-primary-contrast);
 	}
 
 	.curved-bottom-left-button {
@@ -107,7 +110,7 @@
 
 	.show-area {
 		font-size: 3rem;
-		color: white;
+		color: var(--system-color-light-contrast);
 		text-align: end;
 		font-weight: 200;
 

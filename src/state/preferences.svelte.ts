@@ -1,4 +1,5 @@
 import { colors } from '🍎/configs/theme/colors.config.ts';
+import { wallpapers_config } from '🍎/configs/wallpapers/wallpaper.config.ts';
 import type { WallpaperID } from '🍎/configs/wallpapers/wallpaper.config.ts';
 import { persisted } from './persisted.svelte.ts';
 
@@ -25,6 +26,17 @@ export const preferences = persisted('serial-designation-n:preferences', {
 		canControlTheme: false,
 	} as WallpaperSettings,
 });
+
+// Storage can hold values from an older build. Unknown wallpaper ids and palette
+// names would otherwise crash every component that indexes the configs.
+if (!(preferences.wallpaper.id in wallpapers_config)) {
+	preferences.wallpaper.id = 'murder-drones';
+	preferences.wallpaper.image = '';
+}
+
+if (!(preferences.theme.primaryColor in colors)) {
+	preferences.theme.primaryColor = 'gold';
+}
 
 $effect.root(() => {
 	$effect(() => {

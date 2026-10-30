@@ -6,15 +6,28 @@
 	import { create_interval } from '🍎/state/interval.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
 
+	// Only plain paths/URLs are accepted, so a tampered stored preference can't
+	// smuggle extra CSS declarations through the background-image property.
+	const SAFE_IMAGE_URL = /^(?:\/|https?:\/\/)[^\s"'()\\]+$/;
+
+	function safe_image_url(candidate: string | undefined, fallback: string) {
+		return candidate && SAFE_IMAGE_URL.test(candidate) ? candidate : fallback;
+	}
+
+	const wallpaper_image = $derived(
+		safe_image_url(
+			preferences.wallpaper.image,
+			wallpapers_config[preferences.wallpaper.id].image ?? '',
+		),
+	);
+
 	let visible_background_image = $state(
 		wallpapers_config[preferences.wallpaper.id].image ?? wallpapers_config['murder-drones'].image,
 	);
 
 	// Until the wallpaper engine resolves the image, fall back to the config URL so
 	// the preload never requests a bare asset name.
-	const preload_src = $derived(
-		preferences.wallpaper.image || wallpapers_config[preferences.wallpaper.id].image,
-	);
+	const preload_src = $derived(wallpaper_image);
 
 	const interval = create_interval(5 * 1000);
 
@@ -86,7 +99,7 @@
 	}
 
 	function previewImageOnLoad() {
-		visible_background_image = preferences.wallpaper.image;
+		visible_background_image = wallpaper_image;
 	}
 </script>
 
