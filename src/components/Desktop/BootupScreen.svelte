@@ -14,10 +14,22 @@
 	let hidden_splash_screen = $state(false);
 	let progress_val = tweened(100, { duration: boot_duration, easing: quintInOut });
 
-	onMount(async () => {
-		$progress_val = 0;
-		await sleep(boot_duration);
+	function finish_boot() {
 		hidden_splash_screen = true;
+	}
+
+	// This timer is scheduled at component init, not inside onMount: if mounting
+	// stalls (a sibling component throwing, a throttled background tab, a stale
+	// bundle) the splash still leaves instead of freezing on the loading bar. The
+	// `splash-bail-out` animation below is a third net for a blocked main thread.
+	const bail_out_timer = setTimeout(finish_boot, boot_duration + 1200);
+
+	onMount(() => {
+		$progress_val = 0;
+
+		void sleep(boot_duration).then(finish_boot);
+
+		return () => clearTimeout(bail_out_timer);
 	});
 </script>
 
@@ -27,15 +39,19 @@
 			<AppleIcon />
 		</div>
 
-		<div
-			class="progress"
-			role="progressbar"
-			aria-valuenow={100 - $progress_val}
-			aria-valuemin={0}
-			aria-valuemax={100}
-			aria-valuetext="Starting Serial Designation N"
-		>
-			<div class="indicator" style:translate="-{$progress_val}% 0"></div>
+		<div class="boot-footer">
+			<p class="caption">macOS &middot; Murder Drones themed</p>
+
+			<div
+				class="progress"
+				role="progressbar"
+				aria-valuenow={100 - $progress_val}
+				aria-valuemin={0}
+				aria-valuemax={100}
+				aria-valuetext="Starting Serial Designation N"
+			>
+				<div class="indicator" style:translate="-{$progress_val}% 0"></div>
+			</div>
 		</div>
 	</div>
 {/if}
@@ -65,6 +81,10 @@
 
 		animation-fill-mode: forwards;
 
+		/* Fail-safe: if the app never gets to remove this element, it fades itself
+		   out and stops swallowing clicks. */
+		animation: splash-bail-out 600ms ease 5s forwards;
+
 		background-color: hsl(258, 46%, 5%);
 		background-image:
 			radial-gradient(
@@ -87,12 +107,44 @@
 		}
 	}
 
-	.progress {
+	@keyframes splash-bail-out {
+		to {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+	}
+
+	.boot-footer {
 		position: absolute;
 		left: 50%;
 		bottom: 2.5rem;
+
 		transform: translateX(-50%);
 
+		display: grid;
+		justify-items: center;
+		gap: 0.9rem;
+	}
+
+	.caption {
+		margin: 0;
+
+		white-space: nowrap;
+
+		font-family: var(--system-font-family);
+		font-size: 0.7rem;
+		font-weight: 500;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+
+		color: hsla(var(--system-color-primary-hsl), 0.66);
+		text-shadow: 0 1px 8px hsla(258, 70%, 3%, 0.7);
+
+		user-select: none;
+	}
+
+	.progress {
 		border-radius: 50px;
 
 		height: 4px;

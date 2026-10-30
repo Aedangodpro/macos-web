@@ -16,13 +16,49 @@
 	// a refresh or reopening the browser will prompt again the dialog to restart.
 	// Once updateServiceWorker is called, there is a full reload, so the app will be loaded again.
 
+	// Guards the auto-apply below so a worker that never finishes activating can't
+	// reload the page in a loop.
+	const AUTO_UPDATE_KEY = 'serial-designation-n:auto-updated';
+
 	const { needRefresh, updateServiceWorker } = useRegisterSW({
 		onRegistered(swr) {
 			console.log(`SW registered: ${swr}`);
 		},
+		onRegisteredSW(_sw_url, registration) {
+			if (!registration) return;
+
+			// A waiting worker is easy to miss, and until it activates the browser keeps
+			// serving the previous build — including builds that fail to boot. Poll for a
+			// new worker on return visits and hourly in long sessions.
+			const check_for_update = () => void registration.update().catch(() => {});
+
+			setInterval(check_for_update, 60 * 60 * 1000);
+
+			document.addEventListener('visibilitychange', () => {
+				if (document.visibilityState === 'visible') check_for_update();
+			});
+		},
 		onRegisterError(error) {
 			console.log('SW registration error', error);
 		},
+	});
+
+	// Apply a pending update while the tab is hidden, so the user comes back to the
+	// fixed build instead of staying pinned to a stale one until they open App Store.
+	$effect(() => {
+		if (!$needRefresh) return;
+
+		function update_while_hidden() {
+			if (document.visibilityState !== 'hidden') return;
+			if (sessionStorage.getItem(AUTO_UPDATE_KEY)) return;
+
+			sessionStorage.setItem(AUTO_UPDATE_KEY, '1');
+			updateServiceWorker(true);
+		}
+
+		document.addEventListener('visibilitychange', update_while_hidden);
+
+		return () => document.removeEventListener('visibilitychange', update_while_hidden);
 	});
 
 	$effect(() => {

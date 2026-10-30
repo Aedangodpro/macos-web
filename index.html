@@ -75,13 +75,23 @@
 		<script type="module" src="/src/main.ts"></script>
 
 		<script>
+			// Two safety nets so a failed or frozen boot can never trap the user:
+			// nothing mounted -> explain it and offer a reload; desktop mounted but
+			// the splash never left -> drop the splash instead of the desktop.
 			setTimeout(function () {
 				var root = document.getElementById('root');
 
-				if (root && root.childElementCount === 0) {
+				if (!root) return;
+
+				if (root.childElementCount === 0) {
 					document.getElementById('boot-fallback').hidden = false;
+					return;
 				}
-			}, 12000);
+
+				var splash = document.querySelector('.splash-screen');
+
+				if (splash) splash.remove();
+			}, 9000);
 		</script>
 	</body>
 </html>
