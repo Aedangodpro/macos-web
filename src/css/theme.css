@@ -90,7 +90,7 @@ body[data-theme='light'] {
 	--system-cursor-default: url('/cursors/normal-select.svg');
 	--system-cursor-pointer: url('/cursors/link-select.svg');
 	--system-cursor-text-select: url('/cursors/text-select.svg');
-	--system-cursor-help-select: url('/cursors/help-select.svg');
+	--system-cursor-help-select: url('/cursors/alt-select.svg');
 
 	/* // the following two cursors are animated, but will be rendered as a static
   // image by the browser */

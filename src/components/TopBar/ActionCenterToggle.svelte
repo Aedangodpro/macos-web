@@ -3,6 +3,7 @@
 	import { sineIn } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	import { click_outside, elevation, focus_outside } from '🍎/actions';
+	import { asset_url } from '🍎/helpers/asset-url.ts';
 	import { fade_out } from '🍎/helpers/fade.ts';
 	import { apps } from '🍎/state/apps.svelte.ts';
 	import SwitchSvg from '../SVG/SwitchSVG.svelte';
@@ -52,7 +53,12 @@
 	on_close={() => (is_theme_warning_dialog_open = false)}
 >
 	<section class="theme-warning-section">
-		<img height="100" width="100" src="/app-icons/wallpapers/256.webp" alt="Wallpapers app logo" />
+		<img
+			height="100"
+			width="100"
+			src={asset_url('/app-icons/wallpapers/256.webp')}
+			alt="Wallpapers app logo"
+		/>
 
 		<h3>Current Wallpaper Settings prevent changing theme</h3>
 		<p>Head over to Wallpapers app to change this setting or choose a standalone wallpaper.</p>

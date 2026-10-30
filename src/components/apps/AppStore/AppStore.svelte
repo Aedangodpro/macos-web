@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { asset_url } from '🍎/helpers/asset-url.ts';
 	import { sleep } from '🍎/helpers/sleep';
 	import type { AppID } from '🍎/state/apps.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
@@ -27,7 +28,7 @@
 	<section class="main-area">
 		<img
 			style:transform={image_transform}
-			src="/app-icons/{app_id}/256.webp"
+			src={asset_url(`/app-icons/${app_id}/256.webp`)}
 			alt="Placeholder App"
 		/>
 
@@ -36,7 +37,7 @@
 		<h1 style:display="flex" style:align-items="center" style:gap="0.5rem">
 			Nothing here yet <img
 				style="height: 1em; width: auto; transform: translateY(0.1em);"
-				src="/emojis/wink.png"
+				src={asset_url('/emojis/wink.png')}
 				alt="Wink Emoji"
 			/>
 		</h1>

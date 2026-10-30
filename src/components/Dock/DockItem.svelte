@@ -29,6 +29,7 @@
 	import { spring, tweened } from 'svelte/motion';
 	import { elevation } from '🍎/actions';
 	import { apps_config } from '🍎/configs/apps/apps-config.ts';
+	import { asset_url } from '🍎/helpers/asset-url.ts';
 	import { apps, type AppID } from '🍎/state/apps.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
 
@@ -146,7 +147,7 @@
 	<span style:transform="translate(0, {$appOpenIconBounceTransform}px)">
 		<img
 			bind:this={image_el}
-			src="/app-icons/{app_id}/256.webp"
+			src={asset_url(`/app-icons/${app_id}/256.webp`)}
 			alt="{title} app"
 			style:width="{$width_px / 16}rem"
 			draggable="false"

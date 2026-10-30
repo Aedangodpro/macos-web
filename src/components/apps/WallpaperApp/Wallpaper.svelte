@@ -11,7 +11,15 @@
 	const SAFE_IMAGE_URL = /^(?:\/|https?:\/\/)[^\s"'()\\]+$/;
 
 	function safe_image_url(candidate: string | undefined, fallback: string) {
-		return candidate && SAFE_IMAGE_URL.test(candidate) ? candidate : fallback;
+		if (!candidate || !SAFE_IMAGE_URL.test(candidate)) return fallback;
+
+		// A stored value from a build served at the domain root ("/assets/...") is
+		// dead weight once the app sits under a subpath, so ignore it and use the
+		// config image until the wallpaper engine writes a fresh one.
+		const base = import.meta.env.BASE_URL || '/';
+		if (candidate.startsWith('/') && base !== '/' && !candidate.startsWith(base)) return fallback;
+
+		return candidate;
 	}
 
 	const wallpaper_image = $derived(

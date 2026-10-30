@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { useRegisterSW } from 'virtual:pwa-register/svelte';
+	import { asset_url } from '🍎/helpers/asset-url.ts';
 	import { system_needs_update } from '🍎/state/system.svelte';
 	import SystemDialog from '../SystemUI/SystemDialog.svelte';
 
@@ -51,7 +52,7 @@
 		<img
 			width="128"
 			height="128"
-			src="/app-icons/system-preferences/256.webp"
+			src={asset_url('/app-icons/system-preferences/256.webp')}
 			alt="AppStore app"
 			draggable="false"
 		/>

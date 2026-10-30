@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { asset_url } from '🍎/helpers/asset-url';
 	import { fade_out } from '🍎/helpers/fade';
 	import { should_show_notch } from '🍎/state/menubar.svelte.ts';
 
@@ -16,7 +17,9 @@
 
 	{#if should_show_notch.value}
 		<div class="notch" in:fade={{ duration: 150, easing: sineIn }} out:fade_out>
-			<span> <img src="/emojis/wink.png" alt="Wink emoji" class="emoji" /> </span>
+			<span>
+				<img src={asset_url('/emojis/wink.png')} alt="Wink emoji" class="emoji" />
+			</span>
 		</div>
 	{/if}
 
