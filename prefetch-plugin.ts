@@ -1,11 +1,20 @@
-import type { HtmlTagDescriptor, Plugin } from 'vite';
+import type { HtmlTagDescriptor, Plugin, ResolvedConfig } from 'vite';
 
 export function prefetch(): Plugin {
+	// The injected hrefs are built by hand instead of going through Vite's asset
+	// handling, so they have to be prefixed with the configured base themselves —
+	// otherwise a build served from a subpath (GitHub Pages) prefetches 404s.
+	let base = '/';
+
 	return {
 		name: 'prefetch',
 
 		enforce: 'post',
 		apply: 'build',
+
+		configResolved(config: ResolvedConfig) {
+			base = config.base.endsWith('/') ? config.base : `${config.base}/`;
+		},
 
 		transformIndexHtml: (html, ctx) => {
 			const tags = Object.keys(ctx.bundle)
@@ -17,7 +26,7 @@ export function prefetch(): Plugin {
 							tag: 'link',
 							attrs: {
 								rel: 'prefetch',
-								href: `/${chunkName}`,
+								href: `${base}${String(chunkName).replace(/^\//, '')}`,
 							},
 						}) as HtmlTagDescriptor,
 				);
