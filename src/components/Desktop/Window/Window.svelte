@@ -177,8 +177,8 @@
 			& > :global(div) {
 				border-radius: inherit;
 				box-shadow:
-					inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.3),
-					0 0 0 1px hsla(var(--system-color-light-hsl), 0.5),
+					inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.18),
+					0 0 0 1px hsla(var(--system-color-primary-hsl), 0.2),
 					var(--elevated-shadow);
 			}
 		}

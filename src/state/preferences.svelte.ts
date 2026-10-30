@@ -13,16 +13,16 @@ export type Theme = {
 	primaryColor: keyof typeof colors;
 };
 
-export const preferences = persisted('macos:preferences', {
+export const preferences = persisted('serial-designation-n:preferences', {
 	reduced_motion: matchMedia('(prefers-reduced-motion)').matches,
 	theme: {
-		scheme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-		primaryColor: 'blue',
+		scheme: 'dark',
+		primaryColor: 'gold',
 	} as Theme,
 	wallpaper: {
-		image: 'ventura-2',
-		id: 'ventura',
-		canControlTheme: true,
+		image: '',
+		id: 'murder-drones',
+		canControlTheme: false,
 	} as WallpaperSettings,
 });
 
@@ -33,8 +33,11 @@ $effect.root(() => {
 		classList.remove('light', 'dark');
 		classList.add(preferences.theme.scheme);
 
-		// Primary color
-		const colorObj = colors[preferences.theme.primaryColor][preferences.theme.scheme];
+		// Primary color (fall back to the visor gold if a stored palette name is gone)
+		const palette = colors[preferences.theme.primaryColor] as
+			| (typeof colors)[keyof typeof colors]
+			| undefined;
+		const colorObj = (palette ?? colors.gold)[preferences.theme.scheme];
 		document.body.style.setProperty('--system-color-primary', `hsl(${colorObj.hsl})`);
 		document.body.style.setProperty('--system-color-primary-hsl', `${colorObj.hsl}`);
 		document.body.style.setProperty(

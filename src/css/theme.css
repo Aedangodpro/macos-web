@@ -1,69 +1,90 @@
+/* Palette: Serial Designation N
+   - visor gold      #ffd23f  (primary / accents)
+   - violet ink      #130c26  (panels, glass)
+   - deep scene navy #1b1440  (wallpaper haze)
+   - lilac plating   #cdc4e8  (text, rims)
+   - Uzi magenta     #e8608f  (secondary accent)
+   - icy blue        #7f9cf5  (cool highlight)
+*/
+
 body,
 body[data-theme='light'] {
-	/* // Primary */
-	--system-color-primary: hsl(211, 100%, 50%);
-	--system-color-primary-hsl: 211, 100%, 50%;
-	--system-color-primary-contrast: hsl(240, 24%, 100%);
-	--system-color-primary-contrast-hsl: 240, 24%, 100%;
+	/* // Primary — lit visor gold, ink text on top */
+	--system-color-primary: hsl(45, 100%, 46%);
+	--system-color-primary-hsl: 45, 100%, 46%;
+	--system-color-primary-contrast: hsl(258, 50%, 8%);
+	--system-color-primary-contrast-hsl: 258, 50%, 8%;
 
-	/* // Dark */
-	--system-color-dark: hsl(240, 3%, 11%);
-	--system-color-dark-hsl: 240, 3%, 11%;
-	--system-color-dark-contrast: hsl(240, 24%, 100%);
-	--system-color-dark-contrast-hsl: 240, 24%, 100%;
+	/* // Dark — violet ink */
+	--system-color-dark: hsl(258, 42%, 9%);
+	--system-color-dark-hsl: 258, 42%, 9%;
+	--system-color-dark-contrast: hsl(255, 52%, 97%);
+	--system-color-dark-contrast-hsl: 255, 52%, 97%;
 
-	/* // Light */
-	--system-color-light: hsl(240, 24%, 100%);
-	--system-color-light-hsl: 240, 24%, 100%;
-	--system-color-light-contrast: hsl(0, 0%, 11%);
-	--system-color-light-contrast-hsl: 0, 0%, 11%;
+	/* // Light — lilac plating */
+	--system-color-light: hsl(255, 45%, 96%);
+	--system-color-light-hsl: 255, 45%, 96%;
+	--system-color-light-contrast: hsl(258, 42%, 12%);
+	--system-color-light-contrast-hsl: 258, 42%, 12%;
+
+	/* // Hairline rim drawn around translucent surfaces */
+	--system-color-rim-hsl: 258, 42%, 9%;
+
+	/* // Glossy glass sheen laid over translucent surfaces */
+	--system-glass-sheen: linear-gradient(
+		180deg,
+		hsla(0, 0%, 100%, 0.12) 0%,
+		hsla(0, 0%, 100%, 0.03) 34%,
+		hsla(258, 60%, 8%, 0.06) 100%
+	);
+	--system-glass-highlight: inset 0 1px 0 hsla(0, 0%, 100%, 0.28);
 
 	--system-font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', 'Helvetica',
 		'Arial', sans-serif;
 
 	--system-focus-outline: 0 0 0 3px hsla(var(--system-color-primary-hsl), 0.5);
 
-	--system-color-grey-50: #fafafa;
-	--system-color-grey-50-hsl: 0, 0%, 98%;
+	--system-color-grey-50: #faf9ff;
+	--system-color-grey-50-hsl: 250, 60%, 99%;
 
-	--system-color-grey-100: #f5f5f5;
-	--system-color-grey-100-hsl: 0, 0%, 96%;
+	--system-color-grey-100: #f3f1fb;
+	--system-color-grey-100-hsl: 254, 45%, 96%;
 
-	--system-color-grey-200: #eeeeee;
-	--system-color-grey-200-hsl: 0, 0%, 93%;
+	--system-color-grey-200: #ebe7f7;
+	--system-color-grey-200-hsl: 256, 43%, 94%;
 
-	--system-color-grey-300: #e0e0e0;
-	--system-color-grey-300-hsl: 0, 0%, 88%;
+	--system-color-grey-300: #ddd7ee;
+	--system-color-grey-300-hsl: 256, 38%, 89%;
 
-	--system-color-grey-400: #bdbdbd;
-	--system-color-grey-400-hsl: 0, 0%, 74%;
+	--system-color-grey-400: #b9b2cf;
+	--system-color-grey-400-hsl: 255, 22%, 75%;
 
-	--system-color-grey-500: #9e9e9e;
-	--system-color-grey-500-hsl: 0, 0%, 62%;
+	--system-color-grey-500: #968fb0;
+	--system-color-grey-500-hsl: 254, 17%, 63%;
 
-	--system-color-grey-600: #757575;
-	--system-color-grey-600-hsl: 0, 0%, 46%;
+	--system-color-grey-600: #6f6890;
+	--system-color-grey-600-hsl: 252, 16%, 49%;
 
-	--system-color-grey-700: #616161;
-	--system-color-grey-700-hsl: 0, 0%, 38%;
+	--system-color-grey-700: #575070;
+	--system-color-grey-700-hsl: 253, 17%, 38%;
 
-	--system-color-grey-800: #424242;
-	--system-color-grey-800-hsl: 0, 0%, 26%;
+	--system-color-grey-800: #3a3450;
+	--system-color-grey-800-hsl: 253, 21%, 26%;
 
-	--system-color-grey-900: #212121;
-	--system-color-grey-900-hsl: 0, 0%, 13%;
+	--system-color-grey-900: #1f1a30;
+	--system-color-grey-900-hsl: 254, 30%, 15%;
 
-	--system-color-grey-A100: #d5d5d5;
-	--system-color-grey-A100-hsl: 0, 0%, 84%;
+	--system-color-grey-A100: #d9d3ec;
+	--system-color-grey-A100-hsl: 255, 35%, 87%;
 
-	--system-color-grey-A200: #aaa;
-	--system-color-grey-A200-hsl: 0, 0%, 67%;
+	--system-color-grey-A200: #a79ec5;
+	--system-color-grey-A200-hsl: 255, 21%, 70%;
 
-	--system-color-grey-A400: #303030;
-	--system-color-grey-A400-hsl: 0, 0%, 19%;
+	--system-color-grey-A400: #2b2440;
+	--system-color-grey-A400-hsl: 255, 28%, 20%;
 
-	--system-color-grey-A700: #616161;
-	--system-color-grey-A700-hsl: 0, 0%, 38%;
+	--system-color-grey-A700: #575070;
+	--system-color-grey-A700-hsl: 253, 17%, 38%;
 
 	/* // Cursors */
 	--system-cursor-default: url('/cursors/normal-select.svg');
@@ -78,21 +99,33 @@ body[data-theme='light'] {
 }
 
 body.dark {
-	/* // Primary */
-	--system-color-primary: #0a85ff;
-	--system-color-primary-hsl: 210, 100%, 52%;
-	--system-color-primary-contrast: hsl(210, 92%, 5%);
-	--system-color-primary-contrast-hsl: 210, 92%, 5%;
+	/* // Primary — fully lit visor gold */
+	--system-color-primary: hsl(45, 100%, 58%);
+	--system-color-primary-hsl: 45, 100%, 58%;
+	--system-color-primary-contrast: hsl(258, 50%, 7%);
+	--system-color-primary-contrast-hsl: 258, 50%, 7%;
 
-	/* // Dark */
-	--system-color-dark: hsl(240, 24%, 100%);
-	--system-color-dark-hsl: 240, 24%, 100%;
-	--system-color-dark-contrast: hsl(0, 0%, 11%);
-	--system-color-dark-contrast-hsl: 0, 0%, 11%;
+	/* // Dark — lilac plating (light side of the pair) */
+	--system-color-dark: hsl(255, 52%, 96%);
+	--system-color-dark-hsl: 255, 52%, 96%;
+	--system-color-dark-contrast: hsl(258, 50%, 8%);
+	--system-color-dark-contrast-hsl: 258, 50%, 8%;
 
-	/* // Light */
-	--system-color-light: hsl(240, 3%, 11%);
-	--system-color-light-hsl: 240, 3%, 11%;
-	--system-color-light-contrast: hsl(240, 24%, 100%);
-	--system-color-light-contrast-hsl: 240, 24%, 100%;
+	/* // Light — violet glass over the wallpaper */
+	--system-color-light: hsl(257, 47%, 9%);
+	--system-color-light-hsl: 257, 47%, 9%;
+	--system-color-light-contrast: hsl(253, 48%, 95%);
+	--system-color-light-contrast-hsl: 253, 48%, 95%;
+
+	/* // Hairline rim drawn around translucent surfaces */
+	--system-color-rim-hsl: 45, 100%, 58%;
+
+	/* // Glossy glass sheen laid over translucent surfaces */
+	--system-glass-sheen: linear-gradient(
+		180deg,
+		hsla(252, 100%, 96%, 0.14) 0%,
+		hsla(252, 100%, 92%, 0.04) 30%,
+		hsla(258, 70%, 3%, 0.24) 100%
+	);
+	--system-glass-highlight: inset 0 1px 0 hsla(252, 100%, 96%, 0.22);
 }

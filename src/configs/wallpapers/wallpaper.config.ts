@@ -295,6 +295,12 @@ export const wallpapers_config = create_wallpapers_config({
 		},
 	},
 
+	'murder-drones': {
+		name: 'Serial Designation N',
+		type: 'standalone',
+		thumbnail: 'murder-drones-n',
+	},
+
 	'kryptonian-demise': {
 		name: 'Kryptonian Demise',
 		type: 'standalone',

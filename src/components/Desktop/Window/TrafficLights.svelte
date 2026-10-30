@@ -34,8 +34,9 @@
 		height: 100%;
 
 		&.unfocused button {
-			--bgcolor: #b6b6b7;
-			--border-color: hsla(var(--system-color-dark-hsl), 0.5);
+			--bgcolor: hsl(255, 12%, 74%);
+			--border-color: hsla(var(--system-color-dark-hsl), 0.45);
+			--glow-hsl: 255, 12%, 80%;
 		}
 
 		:global(svg) {
@@ -44,7 +45,13 @@
 
 		&:hover {
 			button {
-				transform: scale(1.2);
+				transform: scale(1.15);
+
+				box-shadow:
+					inset 0 0 0 0.5px var(--border-color),
+					inset 0 1.5px 1px hsla(0, 0%, 100%, 0.55),
+					0 1px 2.5px hsla(258, 60%, 4%, 0.55),
+					0 0 9px hsla(var(--glow-hsl), 0.55);
 			}
 
 			:global(svg) {
@@ -62,19 +69,35 @@
 		border-radius: 50%;
 
 		background-color: var(--bgcolor);
-		box-shadow: 0 0 0 0.5px var(--border-color);
+		/* // Glossy glass: specular highlight top-left, darkened lower edge */
+		background-image:
+			radial-gradient(
+				85% 85% at 30% 24%,
+				hsla(0, 0%, 100%, 0.7) 0%,
+				hsla(0, 0%, 100%, 0) 58%
+			),
+			linear-gradient(180deg, hsla(0, 0%, 100%, 0.22) 0%, hsla(258, 60%, 5%, 0.22) 100%);
 
-		transition: transform 100ms ease-in;
+		box-shadow:
+			inset 0 0 0 0.5px var(--border-color),
+			inset 0 1.5px 1px hsla(0, 0%, 100%, 0.5),
+			0 1px 2.5px hsla(258, 60%, 4%, 0.5);
+
+		transition:
+			transform 100ms ease-in,
+			box-shadow 150ms ease-in;
 	}
 
 	.close-light {
-		--bgcolor: #ff5f56;
-		--border-color: #e0443e;
+		--bgcolor: hsl(342, 88%, 58%);
+		--border-color: hsl(342, 68%, 40%);
+		--glow-hsl: 342, 90%, 64%;
 	}
 
 	.stretch-light {
-		--bgcolor: #27c93f;
-		--border-color: #1aab29;
+		--bgcolor: hsl(258, 62%, 62%);
+		--border-color: hsl(258, 52%, 40%);
+		--glow-hsl: 258, 75%, 72%;
 
 		:global(svg) {
 			transform: rotate(90deg);
@@ -82,7 +105,8 @@
 	}
 
 	.minimize-light {
-		--bgcolor: #ffbd2e;
-		--border-color: #dea123;
+		--bgcolor: hsl(45, 100%, 56%);
+		--border-color: hsl(43, 82%, 38%);
+		--glow-hsl: 45, 100%, 62%;
 	}
 </style>

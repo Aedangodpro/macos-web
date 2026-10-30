@@ -38,6 +38,8 @@
 		height: 1.8rem;
 
 		background-color: hsla(var(--system-color-light-hsl), 0.3);
+		background-image: var(--system-glass-sheen);
+		border-bottom: 0.5px solid hsla(var(--system-color-primary-hsl), 0.16);
 
 		color: var(--system-color-light-contrast);
 		fill: var(--system-color-light-contrast);
@@ -59,6 +61,7 @@
 
 	.notch {
 		--width: 140px;
+		--notch-color: hsl(258, 44%, 7%);
 
 		display: grid;
 		place-items: center;
@@ -70,7 +73,7 @@
 		width: var(--width);
 		height: 95%;
 
-		background-color: #222;
+		background-color: var(--notch-color);
 		border-radius: 0 0 0.5rem 0.5rem;
 		transform: translateX(-50%);
 
@@ -98,11 +101,11 @@
 		}
 		&::before {
 			left: -16px;
-			box-shadow: 8px -8px #222;
+			box-shadow: 8px -8px var(--notch-color);
 		}
 		&::after {
 			right: -16px;
-			box-shadow: -8px -8px #222;
+			box-shadow: -8px -8px var(--notch-color);
 		}
 	}
 

@@ -214,7 +214,7 @@
 
 		&.dark {
 			--double-border: inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.3),
-				0 0 0 1.2px hsla(var(--system-color-light-hsl), 0.3);
+				0 0 0 1.2px hsla(var(--system-color-rim-hsl), 0.24);
 		}
 	}
 
@@ -226,7 +226,8 @@
 
 		border-radius: 50%;
 
-		background-color: var(--system-color-dark);
+		background-color: var(--system-color-primary);
+		box-shadow: 0 0 6px hsla(var(--system-color-primary-hsl), 0.8);
 
 		opacity: var(--opacity);
 	}

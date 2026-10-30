@@ -170,13 +170,15 @@
 		user-select: none;
 
 		background-color: hsla(var(--system-color-light-hsl), 0.3);
+		background-image: var(--system-glass-sheen);
 
 		border-radius: 1rem;
 
 		box-shadow:
-			hsla(0, 0%, 0%, 0.3) 0px 0px 11px 0px,
+			var(--system-glass-highlight),
+			hsla(258, 60%, 4%, 0.35) 0px 0px 11px 0px,
 			inset 0 0 0 var(--border-size) hsla(var(--system-color-dark-hsl), 0.3),
-			0 0 0 var(--border-size) hsla(var(--system-color-light-hsl), 0.3);
+			0 0 0 var(--border-size) hsla(var(--system-color-rim-hsl), 0.3);
 
 		&.dark {
 			--border-size: 0.5px;

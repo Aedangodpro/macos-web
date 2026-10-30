@@ -10,7 +10,9 @@
 		([, { type }]) => type === 'standalone',
 	);
 
-	const current_wallpaper_thumb = $derived(`url(${preferences.wallpaper.image})`);
+	const current_wallpaper_thumb = $derived(
+		`url(${preferences.wallpaper.image || wallpapers_config[preferences.wallpaper.id].image})`,
+	);
 
 	function change_wallpaper(wallpaperName: WallpaperID) {
 		preferences.wallpaper.id = wallpaperName;

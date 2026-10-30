@@ -75,6 +75,11 @@ button {
 	cursor: var(--system-cursor-default), auto;
 }
 
+::selection {
+	background-color: hsla(var(--system-color-primary-hsl), 0.35);
+	color: var(--system-color-light-contrast);
+}
+
 /* Scrollbar Stuffs */
 ::-webkit-scrollbar {
 	width: 5px;
@@ -90,7 +95,7 @@ button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background-color: #888;
+	background-color: hsla(258, 32%, 62%, 0.5);
 	border-radius: 0.75rem;
 	width: 5px;
 	transition-duration: 0.4s;
@@ -98,10 +103,10 @@ button {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #666;
+	background-color: hsla(var(--system-color-primary-hsl), 0.6);
 }
 
 /* Handle on clicked */
 ::-webkit-scrollbar-thumb:active {
-	background-color: #444;
+	background-color: hsla(var(--system-color-primary-hsl), 0.85);
 }

@@ -4,80 +4,87 @@ type SingleThemeConfig = {
 };
 
 export const colors = {
-	orange: {
+	/** Lit visor gold — the signature color of Serial Designation N */
+	gold: {
 		light: {
-			hsl: '35deg, 100%, 50%',
-			contrastHsl: '240, 3%, 11%',
+			hsl: '45, 100%, 46%',
+			contrastHsl: '258, 50%, 8%',
 		},
 		dark: {
-			hsl: '36deg, 100%, 52%',
-			contrastHsl: '240, 3%, 11%',
+			hsl: '45, 100%, 58%',
+			contrastHsl: '258, 50%, 7%',
 		},
 	},
 
-	green: {
+	/** Amber of the fur collar and the combat boots */
+	amber: {
 		light: {
-			hsl: '135deg, 59%, 49%',
-			contrastHsl: '135deg, 60%, 4%',
+			hsl: '30, 78%, 45%',
+			contrastHsl: '30, 70%, 7%',
 		},
 		dark: {
-			hsl: '135deg, 64%, 50%',
-			contrastHsl: '135deg, 60%, 4%',
+			hsl: '31, 88%, 58%',
+			contrastHsl: '30, 70%, 6%',
 		},
 	},
 
-	cyan: {
+	/** Violet of N's coat and V's hair */
+	violet: {
 		light: {
-			hsl: '199deg, 78%, 55%',
-			contrastHsl: '199deg, 78%, 100%',
+			hsl: '266, 56%, 52%',
+			contrastHsl: '266, 60%, 98%',
 		},
 		dark: {
-			hsl: '197deg, 100%, 70%',
-			contrastHsl: '197deg, 100%, 5%',
+			hsl: '266, 74%, 68%',
+			contrastHsl: '266, 60%, 7%',
 		},
 	},
 
-	blue: {
-		light: {
-			hsl: '211, 100%, 50%',
-			contrastHsl: '240, 24%, 100%',
-		},
-		dark: {
-			hsl: '210, 100%, 52%',
-			contrastHsl: '210, 92%, 5%',
-		},
-	},
-
+	/** Deep navy of the cave scene the wallpaper is set in */
 	indigo: {
 		light: {
-			hsl: '241deg, 61%, 59%',
-			contrastHsl: '241deg, 61%, 98%',
+			hsl: '233, 62%, 50%',
+			contrastHsl: '233, 60%, 98%',
 		},
 		dark: {
-			hsl: '241deg, 73%, 63%',
-			contrastHsl: '241deg, 73%, 5%',
+			hsl: '232, 82%, 70%',
+			contrastHsl: '232, 60%, 7%',
 		},
 	},
 
-	purple: {
+	/** Icy blue haze behind the drones */
+	ice: {
 		light: {
-			hsl: '280deg, 68%, 60%',
-			contrastHsl: '280deg, 68%, 98%',
+			hsl: '200, 82%, 44%',
+			contrastHsl: '200, 80%, 98%',
 		},
 		dark: {
-			hsl: '280deg, 85%, 65%',
-			contrastHsl: '280deg, 85%, 5%',
+			hsl: '200, 92%, 68%',
+			contrastHsl: '200, 80%, 6%',
 		},
 	},
 
-	pink: {
+	/** Uzi's magenta visor and hair streak */
+	magenta: {
 		light: {
-			hsl: '349deg, 100%, 59%',
-			contrastHsl: '349deg, 100%, 95%',
+			hsl: '338, 78%, 51%',
+			contrastHsl: '338, 80%, 98%',
 		},
 		dark: {
-			hsl: '348deg, 100%, 61%',
-			contrastHsl: '348deg, 100%, 5%',
+			hsl: '338, 92%, 68%',
+			contrastHsl: '338, 80%, 6%',
+		},
+	},
+
+	/** Pale lilac of the drone plating */
+	lilac: {
+		light: {
+			hsl: '254, 48%, 60%',
+			contrastHsl: '258, 48%, 8%',
+		},
+		dark: {
+			hsl: '254, 62%, 76%',
+			contrastHsl: '258, 48%, 8%',
 		},
 	},
 } satisfies Record<string, { light: SingleThemeConfig; dark: SingleThemeConfig }>;

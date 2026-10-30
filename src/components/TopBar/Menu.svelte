@@ -30,17 +30,19 @@
 		user-select: none;
 
 		background-color: hsla(var(--system-color-light-hsl), 0.3);
+		background-image: var(--system-glass-sheen);
 		backdrop-filter: blur(25px);
 
 		border-radius: 0.5rem;
 
 		box-shadow:
-			hsla(0, 0%, 0%, 0.3) 0px 0px 11px 0px,
+			var(--system-glass-highlight),
+			hsla(258, 60%, 4%, 0.35) 0px 0px 11px 0px,
 			var(--additional-box-shadow);
 
 		&.dark {
-			--additional-box-shadow: inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.3),
-				0 0 0 1.2px hsla(var(--system-color-light-hsl), 0.3);
+			--additional-box-shadow: inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.28),
+				0 0 0 1.2px hsla(var(--system-color-rim-hsl), 0.24);
 		}
 	}
 

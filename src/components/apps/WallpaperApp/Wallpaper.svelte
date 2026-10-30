@@ -6,7 +6,15 @@
 	import { create_interval } from '🍎/state/interval.svelte.ts';
 	import { preferences } from '🍎/state/preferences.svelte.ts';
 
-	let visible_background_image = $state(wallpapers_config.ventura.image);
+	let visible_background_image = $state(
+		wallpapers_config[preferences.wallpaper.id].image ?? wallpapers_config['murder-drones'].image,
+	);
+
+	// Until the wallpaper engine resolves the image, fall back to the config URL so
+	// the preload never requests a bare asset name.
+	const preload_src = $derived(
+		preferences.wallpaper.image || wallpapers_config[preferences.wallpaper.id].image,
+	);
 
 	const interval = create_interval(5 * 1000);
 
@@ -83,7 +91,7 @@
 </script>
 
 <!-- This preload and render the image for browser but invisible to user -->
-<img src={preferences.wallpaper.image} aria-hidden="true" alt="" onload={previewImageOnLoad} />
+<img src={preload_src} aria-hidden="true" alt="" onload={previewImageOnLoad} />
 
 <div
 	class="background-cover"

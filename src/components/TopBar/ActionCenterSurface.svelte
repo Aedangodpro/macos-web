@@ -36,11 +36,13 @@
 
 		border-radius: 0.75rem;
 		box-shadow:
-			hsla(0, 0%, 0%, 0.3) 0px 1px 4px -1px,
+			var(--system-glass-highlight),
+			hsla(258, 60%, 4%, 0.3) 0px 1px 4px -1px,
 			inset 0 0 0 var(--border-size) hsla(var(--system-color-dark-hsl), 0.3),
-			0 0 0 var(--border-size) hsla(var(--system-color-light-hsl), 0.3);
+			0 0 0 var(--border-size) hsla(var(--system-color-rim-hsl), 0.3);
 
 		background-color: hsla(var(--system-color-light-hsl), 0.5);
+		background-image: var(--system-glass-sheen);
 
 		&.dark {
 			--border-size: 0.4px;

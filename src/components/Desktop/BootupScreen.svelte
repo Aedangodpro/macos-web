@@ -58,11 +58,13 @@
 
 		animation-fill-mode: forwards;
 
-		background-color: #000;
+		background-color: hsl(258, 46%, 5%);
 
 		:global(svg) {
 			font-size: 100px;
-			color: white;
+			color: var(--system-color-primary);
+
+			filter: drop-shadow(0 0 18px hsla(var(--system-color-primary-hsl), 0.45));
 		}
 	}
 
@@ -74,11 +76,11 @@
 
 		overflow-x: hidden;
 
-		background-color: var(--system-color-grey-800);
+		background-color: hsla(258, 30%, 32%, 0.8);
 	}
 
 	.indicator {
-		background-color: var(--system-color-grey-100);
+		background-color: var(--system-color-primary);
 
 		border-radius: inherit;
 

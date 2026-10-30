@@ -88,6 +88,7 @@
 		padding: 1rem;
 
 		background: hsla(var(--system-color-light-hsl), 0.6);
+		background-image: var(--system-glass-sheen);
 		backdrop-filter: blur(20px);
 
 		will-change: transform;
@@ -99,8 +100,8 @@
 			/* // border-radius: inherit; */
 			box-shadow:
 				var(--elevation),
-				inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.3),
-				0 0 0 1px hsla(var(--system-color-light-hsl), 0.5);
+				inset 0 0 0 0.9px hsla(var(--system-color-dark-hsl), 0.28),
+				0 0 0 1px hsla(var(--system-color-rim-hsl), 0.32);
 		}
 	}
 </style>
