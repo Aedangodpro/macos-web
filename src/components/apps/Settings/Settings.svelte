@@ -5,9 +5,9 @@
 	type Pane = 'appearance' | 'accessibility' | 'performance';
 
 	const panes: { id: Pane; label: string; color: string }[] = [
-		{ id: 'appearance', label: 'Appearance', color: 'hsl(258, 60%, 56%)' },
-		{ id: 'accessibility', label: 'Accessibility', color: 'hsl(211, 90%, 52%)' },
-		{ id: 'performance', label: 'Performance', color: 'hsl(140, 52%, 42%)' },
+		{ id: 'appearance', label: 'Appearance', color: 'hsl(266, 56%, 52%)' },
+		{ id: 'accessibility', label: 'Accessibility', color: 'hsl(45, 100%, 46%)' },
+		{ id: 'performance', label: 'Performance', color: 'hsl(30, 78%, 45%)' },
 	];
 
 	let pane = $state<Pane>('appearance');
@@ -120,7 +120,7 @@
 	.settings {
 		--text: hsl(0, 0%, 12%);
 		--muted: hsla(0, 0%, 0%, 0.5);
-		--sidebar: hsla(0, 0%, 96%, 0.9);
+		--sidebar: hsl(0, 0%, 93%);
 		--panel: hsl(0, 0%, 99%);
 		--group: hsl(0, 0%, 100%);
 		--divider: hsla(0, 0%, 0%, 0.1);
@@ -141,7 +141,7 @@
 		&.dark {
 			--text: hsl(0, 0%, 96%);
 			--muted: hsla(0, 0%, 100%, 0.5);
-			--sidebar: hsla(0, 0%, 17%, 0.92);
+			--sidebar: hsl(266, 20%, 10%);
 			--panel: hsl(0, 0%, 12%);
 			--group: hsl(0, 0%, 17%);
 			--divider: hsla(0, 0%, 100%, 0.1);
@@ -192,6 +192,7 @@
 
 			&.active {
 				background-color: hsla(var(--system-color-primary-hsl), 0.22);
+				color: var(--text);
 			}
 		}
 

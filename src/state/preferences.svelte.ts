@@ -15,7 +15,7 @@ export type Theme = {
 };
 
 export const preferences = persisted('serial-designation-n:preferences', {
-	reduced_motion: matchMedia('(prefers-reduced-motion)').matches,
+	reduced_motion: matchMedia('(prefers-reduced-motion: reduce)').matches,
 	/** Drops blur, glass and heavy shadows for slower machines */
 	low_detail: false,
 	theme: {
