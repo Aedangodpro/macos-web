@@ -110,3 +110,12 @@ button {
 ::-webkit-scrollbar-thumb:active {
 	background-color: hsla(var(--system-color-primary-hsl), 0.85);
 }
+
+/* Low detail mode (Settings > Performance): drop blur, glass and heavy shadows */
+body.low-detail *,
+body.low-detail *::before,
+body.low-detail *::after {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	box-shadow: none !important;
+}

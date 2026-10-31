@@ -16,6 +16,8 @@ export type Theme = {
 
 export const preferences = persisted('serial-designation-n:preferences', {
 	reduced_motion: matchMedia('(prefers-reduced-motion)').matches,
+	/** Drops blur, glass and heavy shadows for slower machines */
+	low_detail: false,
 	theme: {
 		scheme: 'dark',
 		primaryColor: 'gold',
@@ -44,6 +46,7 @@ $effect.root(() => {
 		const { classList } = document.body;
 		classList.remove('light', 'dark');
 		classList.add(preferences.theme.scheme);
+		classList.toggle('low-detail', preferences.low_detail);
 
 		// Primary color (fall back to the visor gold if a stored palette name is gone)
 		const palette = colors[preferences.theme.primaryColor] as

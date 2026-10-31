@@ -87,4 +87,40 @@ export const colors = {
 			contrastHsl: '258, 48%, 8%',
 		},
 	},
+
+	/** Crimson of the blood-red sky over the city */
+	crimson: {
+		light: {
+			hsl: '355, 72%, 48%',
+			contrastHsl: '355, 80%, 98%',
+		},
+		dark: {
+			hsl: '355, 86%, 64%',
+			contrastHsl: '355, 80%, 6%',
+		},
+	},
+
+	/** Emerald of the toxic green glow */
+	emerald: {
+		light: {
+			hsl: '152, 62%, 36%',
+			contrastHsl: '152, 70%, 98%',
+		},
+		dark: {
+			hsl: '152, 66%, 54%',
+			contrastHsl: '152, 70%, 6%',
+		},
+	},
+
+	/** Teal of the sea-glass highlights */
+	teal: {
+		light: {
+			hsl: '178, 70%, 34%',
+			contrastHsl: '178, 70%, 98%',
+		},
+		dark: {
+			hsl: '178, 72%, 58%',
+			contrastHsl: '178, 70%, 6%',
+		},
+	},
 } satisfies Record<string, { light: SingleThemeConfig; dark: SingleThemeConfig }>;

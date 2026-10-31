@@ -10,6 +10,7 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		settings: false,
 		calendar: false,
 		// 'system-preferences': false,
 
@@ -32,6 +33,7 @@ export const apps = $state({
 		calculator: 0,
 		// safari: 0,
 		appstore: 0,
+		settings: 0,
 		calendar: 0,
 		// 'system-preferences': 0,
 
@@ -49,6 +51,7 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		settings: false,
 		calendar: false,
 		// 'system-preferences': false,
 
@@ -63,6 +66,7 @@ export const apps = $state({
 		calculator: false,
 		// safari: false,
 		appstore: false,
+		settings: false,
 		calendar: false,
 		// 'system-preferences': false,
 

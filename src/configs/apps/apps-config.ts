@@ -70,6 +70,14 @@ const viewSource = create_app_config({
 		window.open('https://github.com/puruvj/macos-web', '_blank', 'noopener,noreferrer'),
 });
 
+const settings = create_app_config({
+	title: 'Settings',
+	resizable: false,
+
+	height: 520,
+	width: 720,
+});
+
 const appstore = create_app_config({
 	title: 'App Store',
 	resizable: true,
@@ -82,6 +90,7 @@ export const apps_config = {
 	calendar,
 	vscode,
 	appstore,
+	settings,
 	// safari,
 
 	// 'system-preferences': systemPreferences,

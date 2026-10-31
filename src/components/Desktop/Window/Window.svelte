@@ -79,13 +79,21 @@
 			dragging_enabled = false;
 
 			minimized_transform = windowEl.style.transform;
-			windowEl.style.transform = `translate(0px, 0px)`;
+
+			// Pin to the viewport's top-left, just under the 1.7rem menu bar, so the
+			// window fills the screen instead of staying at its static position.
+			windowEl.style.position = 'fixed';
+			windowEl.style.top = '1.7rem';
+			windowEl.style.left = '0px';
+			windowEl.style.transform = 'none';
 
 			windowEl.style.width = `100%`;
-			// windowEl.style.height = 'calc(100vh - 1.7rem - 5.25rem)';
 			windowEl.style.height = 'calc(100vh - 1.7rem)';
 		} else {
 			dragging_enabled = true;
+			windowEl.style.position = '';
+			windowEl.style.top = '';
+			windowEl.style.left = '';
 			windowEl.style.transform = minimized_transform;
 
 			windowEl.style.width = `${+width / remModifier}rem`;

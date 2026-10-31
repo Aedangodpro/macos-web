@@ -85,14 +85,7 @@
 		   out and stops swallowing clicks. */
 		animation: splash-bail-out 600ms ease 5s forwards;
 
-		background-color: hsl(258, 46%, 5%);
-		background-image:
-			radial-gradient(
-				55% 42% at 50% 44%,
-				hsla(var(--system-color-primary-hsl), 0.14) 0%,
-				transparent 72%
-			),
-			radial-gradient(120% 80% at 50% 118%, hsla(258, 74%, 42%, 0.32) 0%, transparent 62%);
+		background-color: #000;
 
 		.logo {
 			display: grid;
@@ -100,9 +93,7 @@
 
 			:global(svg) {
 				font-size: 100px;
-				color: var(--system-color-primary);
-
-				filter: drop-shadow(0 0 22px hsla(var(--system-color-primary-hsl), 0.45));
+				color: white;
 			}
 		}
 	}
@@ -138,8 +129,7 @@
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
 
-		color: hsla(var(--system-color-primary-hsl), 0.66);
-		text-shadow: 0 1px 8px hsla(258, 70%, 3%, 0.7);
+		color: hsla(0, 0%, 100%, 0.66);
 
 		user-select: none;
 	}
@@ -152,16 +142,11 @@
 
 		overflow-x: hidden;
 
-		background-color: hsla(258, 30%, 30%, 0.75);
-
-		box-shadow:
-			inset 0 1px 2px hsla(258, 70%, 3%, 0.6),
-			0 0 14px hsla(var(--system-color-primary-hsl), 0.14);
+		background-color: var(--system-color-grey-800);
 	}
 
 	.indicator {
-		background-color: var(--system-color-primary);
-		box-shadow: 0 0 10px hsla(var(--system-color-primary-hsl), 0.8);
+		background-color: var(--system-color-grey-100);
 
 		border-radius: inherit;
 
